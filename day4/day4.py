@@ -78,7 +78,6 @@ def bingo_winner(file_name):
                 board_row = 0
                 print(this_board)
 
-
     print(boards_list)
 
     print(bingo_nums)
@@ -111,7 +110,6 @@ def bingo_winner(file_name):
                 break
         if not no_winner:
             break
-
 
     # Calculate final score
     # Iterate through items in dict
