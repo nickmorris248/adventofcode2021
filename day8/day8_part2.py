@@ -137,11 +137,10 @@ def unscramble_digits(file_name):
 
                 # The unique segment between 1s and 7s is the top segment
                 top_seg_set = set(seven) - set(one)
-                #print(f'Top Segment: {sorted(top_seg)[0]}')
                 # If you take the segments in 4 plus the top segment away from 9 there will be one segment left
                 # which is the bottom segment
                 for num in zero69:
-                    #print(f'for num in  zero69: Num = {num} | set(four) = {set(four)} | top_set = {top_seg_set}')
+                    #print(f'zero69 check: for num in  zero69: Num = {num} | set(four) = {set(four)} | top_set = {top_seg_set}')
                     left = set(num) - set(four) - top_seg_set
                     #print(f'Left: {left}')
                     if len(left) == 1:
@@ -181,7 +180,7 @@ def unscramble_digits(file_name):
                 # The segments of 4 minus the segments of 3 leaves the segment top left
                 tleft_set = set(four) - set(three)
 
-                # Convert to letters
+                # Convert segment sets to individual letters
                 top_seg = list(top_seg_set)[0]
                 mid_seg = list(mid_seg_set)[0]
                 bot_seg = list(bot_seg_set)[0]
@@ -191,7 +190,8 @@ def unscramble_digits(file_name):
                 bright = list(bright_set)[0]
 
                 # Print results for reference
-                print(f'\nTop Segment: {sorted(top_seg)[0]}')
+                print('\n*Analysis Results*\n')
+                print(f'Top Segment: {sorted(top_seg)[0]}')
                 print(f'Middle Segment: {sorted(mid_seg)[0]}')
                 print(f'Bottom Segment: {sorted(bot_seg)[0]}')
                 print(f'Top Left Segment: {sorted(tleft)[0]}')
@@ -200,7 +200,10 @@ def unscramble_digits(file_name):
                 print(f'Bottom Right Segment: {sorted(bright)[0]}')
 
                 # Move to round 2: Decoding
+                print('\n*Start Decoding*\n')
                 decoding = True
+                # Build decoding references for each number (d0, d1, d2 etc.) from the
+                # segments that make up that number
                 d0 = [top_seg, tright, bright, bot_seg, bleft, tleft]
                 d1 = [tright, bright]
                 d2 = [top_seg, tright, mid_seg, bleft, bot_seg]
