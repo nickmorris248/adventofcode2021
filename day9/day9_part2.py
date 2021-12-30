@@ -1,13 +1,34 @@
 file_path = "day9_input/"
 
 
+def calculate_fuel(target, positions_list):
+    total_fuel = 0
+
+    # My original calculation
+
+    """for sub in positions_list:
+        distance = abs(sub - target)
+        fuel_increments = [i for i in range(int(distance + 1))]
+        fuel_required = sum(fuel_increments)
+        total_fuel += fuel_required"""
+
+    # Calculation optimised for speed, taken from Jay:
+    # https://github.com/PythonForForex/advent-of-code-2021/blob/main/day7.py
+
+    total_fuel = sum([abs(target - start_pos) * (abs(target - start_pos) + 1) / 2 for start_pos in positions_list])
+
+    return total_fuel
+
+
+
+
 def basin_finder(file_name):
     with open(f'{file_path}{file_name}.txt', encoding='utf8') as f:
         data = f.read()
 
     hm_matrix = [[int(i) for i in line] for line in data.splitlines()]
 
-    print(hm_matrix)
+    #print(hm_matrix)
 
     # Checks (shifts on [row, col] indices)
     # Check all surrounding heights for inner measurements (clockwise from 12)
@@ -117,8 +138,8 @@ def basin_finder(file_name):
                 # Finished mapping this basin
                 # Add basin to basins list
                 basins.append(new_basin)
-                print(f'Fully mapped basin: {new_basin}')
-                print(f'Basin height map: {basin_height_map}')
+                #print(f'Fully mapped basin: {new_basin}')
+                #print(f'Basin height map: {basin_height_map}')
 
     # Find the three largest basins
     #print(basins)
@@ -127,7 +148,7 @@ def basin_finder(file_name):
         basin_lengths.append(len(basin))
         #print(f'Basin Length: {len(basin)}. Basin: {basin}')
 
-    print(f'Basin lengths sorted: {sorted(basin_lengths, reverse=True)}')
+    #print(f'Basin lengths sorted: {sorted(basin_lengths, reverse=True)}')
     longest = sorted(basin_lengths, reverse=True)[0]
     sec_long = sorted(basin_lengths, reverse=True)[1]
     thir_long = sorted(basin_lengths, reverse=True)[2]
