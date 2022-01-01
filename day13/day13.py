@@ -22,6 +22,7 @@ def counting_dots(file_name, no_of_ins):
     print(fold_ins)
 
     new_dots_list = []
+    num_dots = 0
     # Loop through fold instructions
     for instruction in fold_ins[:no_of_ins]:
 
@@ -44,13 +45,22 @@ def counting_dots(file_name, no_of_ins):
                 loc = x
                 y_shift = 0
                 x_shift = (loc - fold_loc) * 2
+            else:
+                loc = ''
+                x_shift = ''
+                y_shift = ''
+                raise AssertionError(f'Invalid fold axis: {instruction[0]}')
 
-            # Dot will shift if it's 'y' coord number is higher (putting it below the fold)
-            if not (loc > fold_loc):
+            # Dot will shift if it's x or y coord number is higher than the fold location
+            # (putting it below the fold for y and to the right of the fold for x)
+            if loc < fold_loc:
                 # Dot is above the fold and stays where it is. Add to new list
                 add_dot = dot
             elif loc > fold_loc:
                 add_dot = [x - x_shift, y - y_shift]
+            else:
+                add_dot = []
+                raise AssertionError(f'Dot ({dot}) on fold line: {fold_loc}')
 
             # Add dot
             if add_dot not in new_dots_list:
@@ -64,7 +74,6 @@ def counting_dots(file_name, no_of_ins):
     print(sorted(new_dots_list))
 
 
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    counting_dots("manual_page", 1)
+    counting_dots("example", 3)
