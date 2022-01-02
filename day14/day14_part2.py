@@ -16,8 +16,8 @@ def polymer_generator(file_name, steps):
     # mydict = {k: v for k, v in iterable}
 
     #print(rules_dict)
-    # First value of [0, 0] records the pairs to be processed today, the second value is for pairs to be
-    # processed tomorrow
+    # First value of [0, 0] records the pairs to be processed this step,
+    # the second value is for pairs to be processed in the next step
     processing_dict = {k: [0, 0] for k, v in rules_list}
     letter_counts = {}
     #print(processing_dict)
@@ -67,7 +67,8 @@ def polymer_generator(file_name, steps):
                 # Reset this step's tallies to zero
                 processing_dict[rule][0] = 0
 
-        # Once all rules have been done for today, shift tomorrow's tallies to today for the next loop
+        # Once all rules have been done for this step, shift the tallies from the 'next step'
+        # position to the 'this step' position for the next loop
         for rule in processing_dict:
             processing_dict[rule][0] = processing_dict[rule][1]
 
