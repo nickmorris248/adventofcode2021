@@ -67,20 +67,20 @@ def path_finder(file_name, look_ahead):
                     # Check if this step # is already in the dict
                     if from_node_step in checked_paths:
                         # Check if this node is already in the
-                        if
-                if
+                        #todo
+                        pass
                 else:
                     # Append to open paths in list
                     for path in checked_paths:
-                        if
+                        #todo
+                        pass
+
                 # Add the new nodes to the 'from nodes' to be analysed on the next step
                 for node_found in nodes_found:
                     from_nodes.append(node_found)
 
-
             # Change the 'from node' to the lowest value just checked
             #todo
-
 
 
 # Press the green button in the gutter to run the script.

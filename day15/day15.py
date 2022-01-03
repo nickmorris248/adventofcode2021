@@ -71,7 +71,7 @@ def calculate_tri_avg(start_node, risk_map):
     return round(average, 1)
 
 
-def path_finder(file_name, look_ahead, strategy):
+def path_finder(file_name, strategy):
     with open(f'{file_path}{file_name}.txt', encoding='utf8') as f:
         data = f.read()
 
@@ -207,4 +207,11 @@ def path_finder(file_name, look_ahead, strategy):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    path_finder("example", 2, 'normal')
+    path_finder("example", 'normal')
+
+
+# Strategy options:
+# 'normal' - brute force
+# 'tri_avg' - use weighting heuristic based on averaging groups of 3 nodes
+
+# Correct answer generated from the 'day15_dijkstra.py' implementation
