@@ -83,8 +83,9 @@ def counting_dots(file_name):
             # Strings to add
             add_lines = ['' for i in range(y_value - len(matrix_dots) + 1)]
             matrix_dots += add_lines
-            #print(add_lines)
+            print(add_lines)
 
+        print(f'Checking: y_value: {y_value}, len(matrix_dots): {len(matrix_dots)}')
         if x_value > len(matrix_dots[y_value]):
             extension = "".join([' ' for i in range(x_value - len(matrix_dots[y_value]))])
             extension += '#'
