@@ -53,9 +53,6 @@ def trick_shot_aimer(data):
 
     print(f'X Range: {x_range}')
 
-
-
-
     # Now find the y values that will reach the target area for each x value in the range
     # and determine the maximum height reached amongst them
     successful_launch_stats = []
@@ -67,8 +64,7 @@ def trick_shot_aimer(data):
         # successful at getting the right answers but further analysis revealed
         # the maximum y is 1 less than the absolute of the lowest y value in the
         # target area
-        for y_start in range(y_min, abs(y_min) + 1):
-            # but analysis suggests
+        for y_start in range(y_min, abs(y_min)):
             attempt_no += 1
             attempt = [x_start, y_start]
 
@@ -115,6 +111,7 @@ def trick_shot_aimer(data):
                     if ((probe_position[1] >= y_min) and (probe_position[1] <= y_max)) or ((probe_position[1] <= y_min) and (probe_position[1] >= y_max)):
                         #print(f'\nTarget area hit at position: {probe_position}')
 
+
                         if y_start not in successful_ys:
                             successful_ys.append(y_start)
                         else:
@@ -125,6 +122,16 @@ def trick_shot_aimer(data):
                         # Records stats for ths successful launch
                         this_launch = [max_height, mh_step, mh_probe_position, mh_starting_velocity]
                         successful_launch_stats.append(this_launch)
+
+                # Apply drag and gravity to x/y values for the next step
+                if x_vel > 0:
+                    x_vel -= 1
+                elif x_vel < 0:
+                    x_vel += 1
+                else:
+                    x_vel = 0
+
+                y_vel -= 1
 
     # Print summary stats
     print(f'\n\nSuccessful Launch Stats: ')
