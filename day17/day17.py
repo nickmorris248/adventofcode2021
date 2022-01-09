@@ -3,8 +3,6 @@
 
 def trick_shot_aimer(data):
 
-    # target area: x=20..30, y=-10..-5
-
     target_area = [[j.split("=") for j in i.split('..')] for i in data.split(": ")[1].split(',')]
 
     print(target_area)
@@ -117,7 +115,6 @@ def trick_shot_aimer(data):
                     if ((probe_position[1] >= y_min) and (probe_position[1] <= y_max)) or ((probe_position[1] <= y_min) and (probe_position[1] >= y_max)):
                         #print(f'\nTarget area hit at position: {probe_position}')
 
-
                         if y_start not in successful_ys:
                             successful_ys.append(y_start)
                         else:
@@ -128,19 +125,6 @@ def trick_shot_aimer(data):
                         # Records stats for ths successful launch
                         this_launch = [max_height, mh_step, mh_probe_position, mh_starting_velocity]
                         successful_launch_stats.append(this_launch)
-
-                # Apply drag and gravity to x/y values for the next step
-                if x_vel > 0:
-                    x_vel -= 1
-                elif x_vel < 0:
-                    x_vel += 1
-                else:
-                    x_vel = 0
-
-                y_vel -= 1
-
-                if step_no == 100000:
-                    stepping = False
 
     # Print summary stats
     print(f'\n\nSuccessful Launch Stats: ')
